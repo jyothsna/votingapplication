@@ -1,0 +1,10 @@
+oscars/Application.class
+oscars/repository/JudgesRepository.class
+oscars/controller/VotingController.class
+oscars/repository/MoviesRepository.class
+oscars/model/VoteSubmissionRequest.class
+oscars/service/VotingService.class
+oscars/entity/VotingDuration.class
+oscars/config/H2InMemoryDBConfig.class
+oscars/entity/Movie.class
+oscars/entity/Judge.class

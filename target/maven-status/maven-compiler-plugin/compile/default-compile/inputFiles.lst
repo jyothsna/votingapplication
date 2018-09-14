@@ -1,0 +1,10 @@
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/repository/JudgesRepository.java
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/entity/VotingDuration.java
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/model/VoteSubmissionRequest.java
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/Application.java
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/repository/MoviesRepository.java
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/controller/VotingController.java
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/entity/Movie.java
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/service/VotingService.java
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/entity/Judge.java
+/Users/212563716/Downloads/gs-rest-service-master/complete/src/main/java/oscars/config/H2InMemoryDBConfig.java
