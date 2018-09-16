@@ -111,9 +111,9 @@ public class VotingService {
 		Instant now = Instant.now();
 		Instant expiredInstant = votingDuration.getStart().plus(votingDuration.getVotingDuration());
 		Boolean hasExpired = expiredInstant.isBefore(now);
-		if (hasExpired) {
-			this.votingStarted = false;
-		}
+// 		if (hasExpired) {
+// 			this.votingStarted = false;
+// 		}
 		return hasExpired;
 	}
 }
