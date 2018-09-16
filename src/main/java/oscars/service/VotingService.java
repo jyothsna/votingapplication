@@ -116,4 +116,12 @@ public class VotingService {
 // 		}
 		return hasExpired;
 	}
+
+	public HttpStatus startVoting() {
+		HttpStatus returnStatus = this.resetVotingDuration();
+		this.setVotingStarted(true);
+		movieRepo.clearVotes();
+		judgeRepo.clearVoted();
+		return returnStatus;
+	}
 }

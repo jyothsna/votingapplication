@@ -12,6 +12,7 @@ package oscars.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import oscars.entity.Movie;
@@ -34,5 +35,9 @@ public interface MoviesRepository extends
 	
 	@Query("FROM Movie  WHERE votes = (SELECT MAX(votes) FROM Movie)")
     List<Movie> findMaxVoted();
+	
+	@Modifying
+	@Query("Update  Movie  set votes = 0")
+    List<Movie> clearVotes();
 }
 	

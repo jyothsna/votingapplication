@@ -148,9 +148,8 @@ public class VotingController {
 	@RequestMapping(value = "/startVoting", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> startVoting() {
 		logger.info("Voting Period has begun now, default duration is 1 min");
-
-		HttpStatus returnStatus = this.votingService.resetVotingDuration();
-		this.votingService.setVotingStarted(true);
+		HttpStatus returnStatus = this.votingService.startVoting();
+		
 		return new ResponseEntity<String>("Voting Period has begun now, default duration is 1 min", returnStatus);
 	}
 
