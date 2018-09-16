@@ -9,9 +9,13 @@
  */
 package oscars.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import oscars.entity.Judge;
+import oscars.entity.Movie;
 
 
 /**
@@ -28,6 +32,9 @@ public interface JudgesRepository extends
 	 * @return Judge object
 	 */
 	Judge findByName(String name);
+	
+	@Query("FROM Judge  WHERE voted = false")
+    List<Judge> findJudgesWhoHaveNotVoted();
 	
 
 }

@@ -31,11 +31,10 @@ public class VotingService {
 
 	@Autowired
 	private VotingDuration votingDuration;
-	
+
 	@Getter
 	@Setter
 	private Boolean votingStarted = false;
-
 
 	public HttpStatus processVote(VoteSubmissionRequest request) throws Exception {
 		Judge judge = judgeRepo.findByName(request.getJudge());
@@ -58,7 +57,7 @@ public class VotingService {
 		return HttpStatus.OK;
 	}
 
-	public HttpStatus saveMovies(Movie request) {
+	public HttpStatus saveMovie(Movie request) {
 		movieRepo.save(request);
 		return HttpStatus.OK;
 	}
@@ -75,6 +74,11 @@ public class VotingService {
 		return HttpStatus.OK;
 	}
 
+	public HttpStatus saveJudge(Judge request) {
+		judgeRepo.save(request);
+		return HttpStatus.OK;
+	}
+
 	public List<Judge> getAllJudges() {
 		// TODO Auto-generated method stub
 		return judgeRepo.findAll();
@@ -88,6 +92,7 @@ public class VotingService {
 
 	public HttpStatus resetVotingDuration() {
 		this.votingDuration.resetVotingDuration();
+		this.votingStarted = true;
 		return HttpStatus.OK;
 	}
 
@@ -105,8 +110,8 @@ public class VotingService {
 	public Boolean hasVotingPeriodEnded() {
 		Instant now = Instant.now();
 		Instant expiredInstant = votingDuration.getStart().plus(votingDuration.getVotingDuration());
-		Boolean hasExpired = expiredInstant.isBefore(now); 
-		if(hasExpired){
+		Boolean hasExpired = expiredInstant.isBefore(now);
+		if (hasExpired) {
 			this.votingStarted = false;
 		}
 		return hasExpired;

@@ -24,7 +24,7 @@ public class VotingDuration implements Serializable {
     @Getter
     @JsonProperty
     
-    private  Duration votingDuration = Duration.ofMinutes(1);
+    private  Duration votingDuration = Duration.ofSeconds(20);
     
     public void setVotingDuration(Duration votingDuration) {
 		this.votingDuration = votingDuration;

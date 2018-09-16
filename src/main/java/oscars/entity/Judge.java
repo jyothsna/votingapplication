@@ -22,35 +22,35 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Judge implements Serializable {
-	
-	public Judge(){
-		
+
+	public Judge() {
+
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonIgnore
 	private Long id;
-	
-    @Getter
-    @Column
-    @JsonProperty
-    private  String name;
-    
-    @Getter
-    @Setter
-    @Column
-    @JsonIgnore
-    private  Boolean voted = false; 
 
-   
-    public Judge( String name,  Boolean voted) {
-        this.name = name;
-        this.voted = voted;
+	@Getter
+	@Column
+	@JsonProperty
+	private String name;
 
-    }
-    
-    @JsonCreator
-    public Judge( @JsonProperty("name") String name) {
-        this.name = name;
-    }
+	@Getter
+	@Setter
+	@Column
+	@JsonIgnore
+	private Boolean voted = false;
+
+	public Judge(String name, Boolean voted) {
+		this.name = name;
+		this.voted = voted;
+
+	}
+
+	@JsonCreator
+	public Judge(@JsonProperty("name") String name) {
+		this.name = name;
+	}
 }
