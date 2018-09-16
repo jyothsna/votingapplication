@@ -65,7 +65,7 @@ public class VotingController {
 	@RequestMapping(value = "/awardGoesTo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@NotNull
 	public ResponseEntity<List<Movie>> bestMovieWinner() {
-		if (!this.votingService.hasVotingPeriodEnded() || this.votingService.getVotingStarted() ) {
+		if (!this.votingService.hasVotingPeriodEnded() || !this.votingService.getVotingStarted() ) {
 			logger.error("Voting Period has not begun or ended to reveal the best voted Movie");
 			return new ResponseEntity<List<Movie>>(HttpStatus.LOCKED);
 		}
