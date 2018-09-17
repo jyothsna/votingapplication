@@ -84,9 +84,12 @@ public class VotingControllerTests {
 			setupDone = true;
 		}
 	}
-
+	/**
+	 * 1)  Admin should be able to get movies
+	 * @throws Exception
+	 */
 	@Test
-	public void test0GetMovies() throws Exception {
+	public void test1GetMovies() throws Exception {
 
 		String expected = new GsonBuilder().addSerializationExclusionStrategy(this.exclusionStrategy).create().toJson(movieRepo.findAll());
 		getMoviesAndVerify(expected, shouldPass);
@@ -94,41 +97,47 @@ public class VotingControllerTests {
 
 	/**
 	 * 
-	 * 7) Admin should be able to add Movies to Nominated Movies List (before
+	 * 2) Admin should be able to add Movies to Nominated Movies List (before
 	 * voting starts.
 	 * 
 	 */
 	@Test
-	public void test1AdminAddsMovies() throws Exception {
+	public void test2AdminAddsMovies() throws Exception {
 		addAMovieAndVerify(new Movie("movieTest1", "genreTest1"), shouldPass);
 
 	}
 
+	/**
+	 * 3) Admin should be able to get Judges
+	 * @throws Exception
+	 */
 	@Test
-	public void test2GetJudges() throws Exception {
+	public void test3GetJudges() throws Exception {
 		
 		String expected = new GsonBuilder().addSerializationExclusionStrategy(this.exclusionStrategy).create().toJson(judgeRepo.findAll());
 		getJudgesAndVerify(expected, shouldPass);
 	}
 
 	/**
-	 * Test when voting period has not started
+	 * 4) Anyone should be not be able to get the Best Voted Movie winner when voting period has not started
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void test3BestMovieWinner() throws Exception {
+	public void test4BestMovieWinner() throws Exception {
 		verifyBestMovieWinner(null, !shouldPass);
 	}
 
 	/**
-	 * Start voting submit votes 6) An admin cannot add new movies to nominated
-	 * list of movies when Voting period has started.
+	 * 	5) 	Start voting 
+	 * 		submit votes 
+	 * 		An admin cannot add new movies to nominated
+	 * 		list of movies when Voting period has started.
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	public void test4StartVotingSubmitVotesNoMoviesCanBeAdded() throws Exception {
+	public void test5StartVotingSubmitVotesNoMoviesCanBeAdded() throws Exception {
 
 		startVoting();
 
@@ -140,12 +149,12 @@ public class VotingControllerTests {
 	}
 
 	/**
-	 * Judges should be able to find the Best Voted Movie after Voting period
+	 * 6) Judges should be able to find the Best Voted Movie after Voting period
 	 * ends
 	 */
 
 	@Test
-	public void test5GetBestMovieAfterVotingPeriodEnds() throws Exception {
+	public void test6GetBestMovieAfterVotingPeriodEnds() throws Exception {
 
 		startVoting();
 		List<Judge> existingNotVotedJudge = judgeRepo.findJudgesWhoHaveNotVoted();
@@ -160,13 +169,14 @@ public class VotingControllerTests {
 		verifyBestMovieWinner(new Movie[] { movie }, shouldPass);
 	}
 
-	/**
-	 * 4) Admin should be able to extend the voting period 10) An Admin cannot
-	 * add new movies to nominated list of movies when Voting period is
-	 * extended.
+	/** 
+	 * 	7) 	Admin should be able to extend the voting period 
+	 * 		An Admin cannot add new movies to nominated 
+	 * 			list of movies when Voting period is extended.
+	 * 
 	 */
 	@Test
-	public void test6AdminExtendsVotingPeriod() throws Exception {
+	public void test7AdminExtendsVotingPeriod() throws Exception {
 
 		startVoting();
 		List<Judge> existingNotVotedJudge = judgeRepo.findJudgesWhoHaveNotVoted();
@@ -189,13 +199,12 @@ public class VotingControllerTests {
 
 	/**
 	 * 
-	 * 7) A non-existing movie cannot be voted , proper error should be returned
-	 * 
-	 * 8) A non-existing judge cannot vote, proper error should be returned 9)
-	 * Best movie cannot be listed if Voting period is extended
+	 * 	8) 	A non-existing movie cannot be voted , proper error should be returned
+	 * 		A non-existing judge cannot vote, proper error should be returned 
+	 * 		Best movie cannot be listed if Voting period is extended
 	 */
 	@Test
-	public void test7voteNonExistingMovieOrJudgeShouldFail() throws Exception {
+	public void test8voteNonExistingMovieOrJudgeShouldFail() throws Exception {
 		// Start Voting
 		startVoting();
 
@@ -206,12 +215,12 @@ public class VotingControllerTests {
 	}
 
 	/**
-	 * 6) Admin should be able to add judges for voting for Best Movie
+	 * 9) Admin should be able to add judges for voting for Best Movie
 	 * 
 	 */
 
 	@Test
-	public void test8AdminAddsJudges() throws Exception {
+	public void test9AdminAddsJudges() throws Exception {
 		Judge judge8 = new Judge("judgeTest8");
 
 		addAJudge(judge8);
@@ -219,11 +228,10 @@ public class VotingControllerTests {
 	}
 
 	/**
-	 * 2) Same Judge cannot vote more than 1 time 3) Same Judge cannot vote more
-	 * than 1 time even if voting period is extended 4) A Judge who has not
-	 * voted before should be able to vote if Voting period is extended 5) A
-	 * Judge who is elected after the voting period is extended should be able
-	 * to vote
+	 * 	10) 	Same Judge cannot vote more than 1 time 
+	 * 		Same Judge cannot vote more than 1 time even if voting period is extended 
+	 *		A Judge who has not voted before should be able to vote if Voting period is extended 
+	 * 		A Judge who is elected after the voting period is extended should be able to vote
 	 * 
 	 */
 
@@ -258,11 +266,10 @@ public class VotingControllerTests {
 	}
 
 	/**
-	 * 5) Admin should not be able to clear the movies and Judges when voting is
-	 * in progress
-	 * 
-	 * Admin should able to clear the movies and Judges when voting is not in
-	 * progress
+	 * 	11) Admin should not be able to clear the movies and Judges when voting is
+	 * 			in progress
+	 * 		Admin should able to clear the movies and Judges when voting is not in
+	 *			progress
 	 */
 	@Test
 	public void test11AdminClearsMoviesAndJudge() throws Exception {
